@@ -7,10 +7,15 @@ plugins {
     id("org.springframework.boot") version "2.4.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("plugin.spring") version "1.4.32"
+    kotlin("plugin.allopen") version "1.4.32"
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.Embeddable")
+    annotation("javax.persistence.MappedSuperclass")
+}
 repositories {
-    jcenter()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
 }
@@ -38,6 +43,6 @@ tasks.withType<KotlinCompile>() {
 }
 
 application {
-    mainClass.set("main.kotlin.ServerKt")
+    mainClass.set("com.cybergames.ServerKt")
 }
 
