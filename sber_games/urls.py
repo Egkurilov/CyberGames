@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import HomePageView
+
+from sber_games import views
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='home')
+    path('', views.HomePageView.as_view()),
+    path('registration', views.registration, name='registration'),
+    path('user_info', views.user_info, name='user_info')
 ]
