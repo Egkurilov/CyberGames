@@ -27,6 +27,18 @@ def registration(request, *args, **kwargs):
     return render(request, 'registration.html', {})
 
 
+def my_game(request, *args, **kwargs):
+    return render(request, 'my_game.html', {})
+
+
+def my_team(request, *args, **kwargs):
+    return render(request, 'my_team.html', {})
+
+
+def tournament(request, *args, **kwargs):
+    return render(request, 'tournament.html', {})
+
+
 def user_info(request, *args, **kwargs):
     ip = request.META.get('REMOTE_ADDR')
     return render(request, 'user_info.html', {'ip_adress': ip})
