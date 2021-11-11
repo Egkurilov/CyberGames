@@ -18,6 +18,11 @@ class HomePageView(TemplateView):
         return context
 
 
+def user_profile(request, *args, **kwargs):
+    users = USER.objects.all()
+    return render(request, 'user_profile.html', {'users': users})
+
+
 def registration(request, *args, **kwargs):
     return render(request, 'registration.html', {})
 
