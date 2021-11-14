@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from app_profiles.views import UserFormView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sber_games.urls')),
+    path('profiles/register/', UserFormView.as_view()),
 ]

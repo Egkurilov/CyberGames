@@ -11,7 +11,11 @@ from django.db import models
 class USER(models.Model):
     id = models.BigAutoField(primary_key=True)
     nickname = models.CharField(max_length=255, db_index=True)
-    fio = models.CharField(max_length=255)
+    password = models.CharField(max_length=255, default=None)
+    first_name = models.CharField(max_length=255, default=None)
+    second_name = models.CharField(max_length=255, default=None)
+    last_name = models.CharField(max_length=255, default=None)
+    email = models.EmailField(null=True, max_length=255)
     tab_number = models.CharField(max_length=255)
     game_account = models.CharField(max_length=255)
     game = models.ForeignKey('GAME', default=None, null=True, on_delete=models.CASCADE)
@@ -28,7 +32,7 @@ class USER(models.Model):
 # db GAME
 class GAME(models.Model):
     name = models.CharField(max_length=255)
-    logo = models.ImageField(default=None, upload_to='images/game/')
+    logo = models.ImageField(default=None, upload_to='sber_games/images/game/')
 
     def __str__(self):
         return self.name[:50]
@@ -40,7 +44,7 @@ class GAME(models.Model):
 # db TEAMS
 class TEAM(models.Model):
     name = models.CharField(max_length=255)
-    logo = models.ImageField(default=None, upload_to='images/team/')
+    logo = models.ImageField(default=None, upload_to='sber_games/images/team/')
     game = models.ForeignKey('GAME', default=None, null=True, on_delete=models.CASCADE)
     members = models.CharField(max_length=2555)
     status = models.BooleanField(default=True)
@@ -56,7 +60,7 @@ class TEAM(models.Model):
 class TOURNAMENT(models.Model):
     name = models.CharField(max_length=255)
     game = models.ForeignKey('GAME', default=None, null=True, on_delete=models.CASCADE)
-    logo = models.ImageField(default=None, upload_to='images/tournament/')
+    logo = models.ImageField(default=None, upload_to='sber_games/images/tournament/')
     created_date = models.DateTimeField(default=datetime.now)
     start_date = models.DateTimeField()
     members = models.CharField(max_length=2555, default=None)
@@ -69,5 +73,31 @@ class TOURNAMENT(models.Model):
 
     class Meta:
         db_table = 'TOURNAMENTS'
+
+
+class PARTICIPANTS_UTournament(models.Model):
+    name = models.CharField(max_length=255, default=None)
+    user = models.ForeignKey('USER', default=None, null=True, on_delete=models.CASCADE)
+    tournamt = models.ForeignKey('TOURNAMENT', default=None, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name[:50]
+
+    class Meta:
+        db_table = 'ParticipantsUserToTournament'
+
+
+class PARTICIPANTS_UTeam(models.Model):
+    name = models.CharField(max_length=255, default=None)
+    user = models.ForeignKey('USER', default=None, null=True, on_delete=models.CASCADE)
+    tournamt = models.ForeignKey('TEAM', default=None, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name[:50]
+
+    class Meta:
+        db_table = 'ParticipantsUserToTeam'
+
+
 
 # TODO db MAIL

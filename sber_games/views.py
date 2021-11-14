@@ -36,7 +36,7 @@ def user_profile(request, *args, **kwargs):
 
 
 def registration(request, *args, **kwargs):
-    return render(request, 'registration.html', {})
+    return render(request, '../app_profiles/templates/profiles/registration.html', {})
 
 
 def my_game(request, *args, **kwargs):

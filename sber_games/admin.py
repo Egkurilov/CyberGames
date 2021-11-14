@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sber_games.models import USER, GAME, TOURNAMENT, TEAM
+from sber_games.models import USER, GAME, TOURNAMENT, TEAM, PARTICIPANTS_UTournament, PARTICIPANTS_UTeam
 
 
 # Register your models here.
@@ -21,5 +21,15 @@ class sber_gamesAdmin(admin.ModelAdmin):
 
 
 @admin.register(TEAM)
+class sber_gamesAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PARTICIPANTS_UTournament)
+class sber_gamesAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PARTICIPANTS_UTeam)
 class sber_gamesAdmin(admin.ModelAdmin):
     pass
