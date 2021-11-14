@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%  if user_list %}
+    <ul>
+{% for user in user_list%}
+
+    <li>
+    <a href="/user/{{ user.id }}">{{ user.nickname }}</a>
+    </li>
+{% endfor %}
+
+    </ul>
+{% else %}
+    <p>user nor found</p>
+{% endif %}
+</body>
+</html>

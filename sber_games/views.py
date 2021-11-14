@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.views import generic
 from django.views.generic import TemplateView
 
 from sber_games.models import USER
@@ -16,6 +17,17 @@ class HomePageView(TemplateView):
         context['title'] = 'Sber CyberGame'
         context['description'] = 'Sber CyberGame'
         return context
+
+
+class UserListView(generic.ListView):
+    model = USER
+    template_name = 'user_list.html'
+    context_object_name = 'user_list'
+    queryset = USER.objects.all()[:5]
+
+
+class UserDetailView(generic.DetailView):
+    model = USER
 
 
 def user_profile(request, *args, **kwargs):
