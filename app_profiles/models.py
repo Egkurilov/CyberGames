@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class register_USER(models.Model):
+class USER(models.Model):
     id = models.BigAutoField(primary_key=True)
     nickname = models.CharField(max_length=255, db_index=True)
     password = models.CharField(max_length=255, default=None)
@@ -19,4 +19,8 @@ class register_USER(models.Model):
         return self.nickname[:50]
 
     class Meta:
-        db_table = 'register_USER'
+        db_table = 'USER'
+
+
+class TEST(models.Model):
+    test = models.CharField(max_length=255)

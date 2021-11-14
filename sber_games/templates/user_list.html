@@ -10,7 +10,7 @@
 {% for user in user_list%}
 
     <li>
-    <a href="/user/{{ user.id }}">{{ user.nickname }}</a>
+    <a href="/profiles/{{ user.id }}/edit/">{{ user.nickname }}</a>
     </li>
 {% endfor %}
 

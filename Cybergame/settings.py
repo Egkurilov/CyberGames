@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sber_games.apps.SberGamesConfig',
-    'app_profiles',
+    'app_profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [

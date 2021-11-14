@@ -1,6 +1,6 @@
 from django.contrib import admin
-from sber_games.models import USER, GAME, TOURNAMENT, TEAM, PARTICIPANTS_UTournament, PARTICIPANTS_UTeam
-
+from sber_games.models import GAME, TOURNAMENT, TEAM, PARTICIPANTS_UTournament, PARTICIPANTS_UTeam
+from app_profiles.models import USER
 
 # Register your models here.
 
