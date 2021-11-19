@@ -13,6 +13,7 @@ class USER(models.Model):
     game_account = models.CharField(max_length=255)
     game = models.CharField(max_length=255)
     register_date = models.DateTimeField(auto_now_add=True)
+    teams = models.ForeignKey('sber_games.TEAM', default=None, null=True, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)
 
     def __str__(self):

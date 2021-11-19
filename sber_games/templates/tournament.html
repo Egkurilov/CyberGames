@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register Page</title>
+    <h>THIS IS TOURNAMENT PAGE</h>
+    <br>
 </head>
 <body>
-
+<h2>Register</h2>
+<form method="post" action="/tournament/">
+    {% csrf_token %}
+    {{ tournament_form.as_p }}
+    <button type="submit">Create Tournament</button>
+</form>
 </body>
 </html>
