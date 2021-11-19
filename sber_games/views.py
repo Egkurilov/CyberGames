@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 # Create your views here.
 from django.views import generic
@@ -45,16 +45,23 @@ def my_team(request, *args, **kwargs):
     return render(request, 'my_team.html', {})
 
 
+def user_info(request, *args, **kwargs):
+    ip = request.META.get('REMOTE_ADDR')
+    return render(request, 'user_info.html', {'ip_adress': ip})
+
+
 class TournamentListView(generic.ListView):
     model = TOURNAMENT
     template_name = 'tournament_list.html'
     context_object_name = 'tournament_list'
-    queryset = TOURNAMENT.objects.all()[:5]
+    queryset = TOURNAMENT.objects.all()[:100]
 
 
-def user_info(request, *args, **kwargs):
-    ip = request.META.get('REMOTE_ADDR')
-    return render(request, 'user_info.html', {'ip_adress': ip})
+class TournamentDetailView(generic.DetailView):
+    def get(self, request, *args, **kwargs):
+        tournament_view = get_object_or_404(TOURNAMENT, pk=kwargs['pk'])
+        context = {'tournament_view': tournament_view}
+        return render(request, 'tournament_view.html', context)
 
 
 class TournamentFormView(View):

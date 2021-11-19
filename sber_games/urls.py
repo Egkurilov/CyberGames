@@ -1,7 +1,7 @@
 from django.urls import path
 
 from sber_games import views
-from sber_games.views import TournamentFormView, TournamentListView
+from sber_games.views import TournamentFormView, TournamentListView, TournamentDetailView
 
 urlpatterns = [
     path('', views.HomePageView.as_view()),
@@ -11,7 +11,7 @@ urlpatterns = [
     path('tournament/', TournamentFormView.as_view()),
     path('tournament_list/', TournamentListView.as_view()),
 
-    #path('profiles/<int:profile_id>/edit/', TournamentFormView.as_view()),
+    path('tournament/<int:pk>/', TournamentDetailView.as_view(), name='tournament-detail'),
 
     path('game', views.my_game, name='my_game'),
     path('user_list', views.UserListView.as_view(), name='user_list'),

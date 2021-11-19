@@ -41,7 +41,7 @@ class TEAM(models.Model):
 class TOURNAMENT(models.Model):
     name = models.CharField(max_length=255)
     game = models.ForeignKey('GAME', blank=True, null=True, on_delete=models.CASCADE)
-    logo = models.FileField(default=None, blank=True, upload_to='sber_games/images/tournament/')
+    logo = models.ImageField(default=None, blank=True, upload_to='sber_games/images/tournament/')
     created_date = models.DateTimeField(default=datetime.now)
     start_date = models.DateTimeField()
     prize = models.CharField(max_length=255)

@@ -10,6 +10,7 @@
 {% for tournament in tournament_list %}
         <li>
          {{ tournament.name }} {{ tournament.game }} {{ tournament.start_date }}
+            <a href="/tournament/{{ tournament.id }}/">{{ tournament.name }}</a>
         </li>
 {% endfor %}
         </ul>
