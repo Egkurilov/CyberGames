@@ -70,8 +70,8 @@ class TournamentFormView(View):
         return render(request, 'tournament.html', context={'tournament_form': tournament_form})
 
     def post(self, request):
-        tournament_form = TournamentForm(request.POST)
-
+        tournament_form = TournamentForm(request.POST, request.FILES)
+        print(request.POST)
         if tournament_form.is_valid():
             TOURNAMENT.objects.create(**tournament_form.cleaned_data)
             return HttpResponseRedirect('/')

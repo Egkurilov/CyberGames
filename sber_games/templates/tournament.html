@@ -7,8 +7,8 @@
     <br>
 </head>
 <body>
-<h2>Register</h2>
-<form method="post" action="/tournament/">
+<h2>CREATE TOURNAMENT</h2>
+<form method="post" action="/tournament/" enctype="multipart/form-data">
     {% csrf_token %}
     {{ tournament_form.as_p }}
     <button type="submit">Create Tournament</button>

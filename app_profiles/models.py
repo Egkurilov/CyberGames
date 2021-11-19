@@ -11,7 +11,7 @@ class USER(models.Model):
     email = models.EmailField(null=True, max_length=255)
     tab_number = models.CharField(max_length=255)
     game_account = models.CharField(max_length=255)
-    game = models.CharField(max_length=255)
+    game = models.ForeignKey('sber_games.GAME', default=None, null=True, on_delete=models.CASCADE)
     register_date = models.DateTimeField(auto_now_add=True)
     teams = models.ForeignKey('sber_games.TEAM', default=None, null=True, on_delete=models.CASCADE)
     status = models.BooleanField(default=True)

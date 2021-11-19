@@ -7,3 +7,4 @@ class UserForm(forms.ModelForm):
         class Meta:
                 model = USER
                 fields = '__all__'
+                exclude = ['teams']
