@@ -14,7 +14,7 @@ class EmailSenderService(
     fun sendEmail(user: User) {
         val email: Email = SimpleEmail()
         email.setHostName(mailSenderProperties.host)
-        email.setSmtpPort(mailSenderProperties.host.toInt())
+        email.setSmtpPort(mailSenderProperties.port)
         email.setAuthenticator(DefaultAuthenticator(mailSenderProperties.username, mailSenderProperties.password))
         email.setSSLOnConnect(true)
         email.setFrom("user@gmail.com")

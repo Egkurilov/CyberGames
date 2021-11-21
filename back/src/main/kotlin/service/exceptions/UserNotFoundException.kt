@@ -1,5 +1,5 @@
 package com.cybergames.service.exceptions
 
 
-class UserNotFoundException : RuntimeException() {
+class UserNotFoundException(userId : Long) : RuntimeException() {
 }

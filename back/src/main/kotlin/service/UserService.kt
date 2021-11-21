@@ -11,7 +11,6 @@ class UserService( val userRepository: UserRepository,
 
     fun create(user: User): Long? {
         val persistedUser =  userRepository.save(user)
-        mailService.sendEmail(user)
         return persistedUser.id
     }
 

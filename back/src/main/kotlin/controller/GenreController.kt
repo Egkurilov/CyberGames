@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.*
 import javax.websocket.server.PathParam
 
 @RestController
-@RequestMapping
+@RequestMapping("/genre")
 class GenreController(val genreService: GenreService) {
-    @PostMapping("/genre/add")
+    @PostMapping("/add")
     fun add(@RequestBody genre: Genre) : ResponseEntity<Long>{
         return ResponseEntity.ok(genreService.create(genre))
     }
 
-    @DeleteMapping("/genre/{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathParam("id") id : Long) : ResponseEntity<Long>{
         genreService.delete(id)
         return ResponseEntity.ok(id)
     }
 
-    @GetMapping("/genre")
+    @GetMapping("/")
     fun all() : ResponseEntity<MutableIterable<Genre>>{
         return ResponseEntity.ok(genreService.findAll())
     }

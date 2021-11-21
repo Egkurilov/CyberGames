@@ -1,8 +1,8 @@
 mail-sender:
-  host: ${MAIL_SENDER_HOST}
-  port: ${MAIL_SENDER_PORT:0}
-  username: ${MAIL_SENDER_USERNAME}
-  password: ${MAIL_SENDER_PASSWORD}
+  host: localhost
+  port: 1
+  username: name
+  password: pass
   protocol: ${MAIL_SENDER_PROTOCOL}
   auth: ${MAIL_SENDER_AUTH:true}
   starttls-enable: ${MAIL_SENDER_STARTTLS_ENABLE:true}

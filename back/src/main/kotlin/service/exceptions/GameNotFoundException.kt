@@ -1,4 +1,4 @@
 package com.cybergames.service.exceptions
 
-class GameNotFoundException : RuntimeException() {
+class GameNotFoundException(gameId : Long) : RuntimeException() {
 }
