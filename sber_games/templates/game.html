@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+    <h>THIS IS GAME PAGE</h>
+    <br>
+</head>
+<body>
+<h2>CREATE GAME</h2>
+<form method="post" action="/game/" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ game_form.as_p }}
+    <button type="submit">Create Game</button>
+</form>
+</body>
+</html>

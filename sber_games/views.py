@@ -7,8 +7,8 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 
 from app_profiles.models import USER
-from sber_games.forms import TournamentForm
-from sber_games.models import TOURNAMENT
+from sber_games.forms import TournamentForm, GameForm
+from sber_games.models import TOURNAMENT, GAME
 
 
 class HomePageView(TemplateView):
@@ -76,3 +76,33 @@ class TournamentFormView(View):
             TOURNAMENT.objects.create(**tournament_form.cleaned_data)
             return HttpResponseRedirect('/')
         return render(request, 'tournament.html', context={'tournament_form': tournament_form})
+
+####### GAME
+
+
+class GameFormView(View):
+    def get(self, request):
+        game_form = GameForm()
+        return render(request, 'game.html', context={'game_form': game_form})
+
+    def post(self, request):
+        game_form = GameForm(request.POST, request.FILES)
+        print(request.POST)
+        if game_form.is_valid():
+            GAME.objects.create(**game_form.cleaned_data)
+            return HttpResponseRedirect('/')
+        return render(request, 'game.html', context={'game_form': game_form})
+
+
+class GameListView(generic.ListView):
+    model = GAME
+    template_name = 'game_list.html'
+    context_object_name = 'game_list'
+    queryset = GAME.objects.all()[:100]
+
+
+class GameDetailView(generic.DetailView):
+    def get(self, request, *args, **kwargs):
+        game_view = get_object_or_404(GAME, pk=kwargs['pk'])
+        context = {'game_view': game_view}
+        return render(request, 'game_view.html', context)
