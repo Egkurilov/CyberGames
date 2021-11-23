@@ -2,17 +2,23 @@ from django.urls import path
 
 from sber_games import views
 from sber_games.views import TournamentFormView, TournamentListView, TournamentDetailView, GameFormView, GameListView, \
-    GameDetailView
+    GameDetailView, TeamDetailView, TeamFormView, TeamListView
 
 urlpatterns = [
     path('', views.HomePageView.as_view()),
     path('user_info', views.user_info, name='user_info'),
-    path('team', views.my_team, name='my_team'),
 
+    #TEAM
+    path('team/', TeamFormView.as_view()),
+    path('team_list/', TeamListView.as_view()),
+    path('team/<int:pk>/', TeamDetailView.as_view(), name='team-detail'),
+
+    #TOURNAMENT
     path('tournament/', TournamentFormView.as_view()),
     path('tournament_list/', TournamentListView.as_view()),
     path('tournament/<int:pk>/', TournamentDetailView.as_view(), name='tournament-detail'),
 
+    #GAME
     path('game/', GameFormView.as_view()),
     path('game_list/', GameListView.as_view()),
     path('game/<int:pk>/', GameDetailView.as_view(), name='game-detail'),

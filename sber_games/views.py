@@ -7,8 +7,8 @@ from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 
 from app_profiles.models import USER
-from sber_games.forms import TournamentForm, GameForm
-from sber_games.models import TOURNAMENT, GAME
+from sber_games.forms import TournamentForm, GameForm, TeamForm
+from sber_games.models import TOURNAMENT, GAME, TEAM
 
 
 class HomePageView(TemplateView):
@@ -71,7 +71,6 @@ class TournamentFormView(View):
 
     def post(self, request):
         tournament_form = TournamentForm(request.POST, request.FILES)
-        print(request.POST)
         if tournament_form.is_valid():
             TOURNAMENT.objects.create(**tournament_form.cleaned_data)
             return HttpResponseRedirect('/')
@@ -87,7 +86,6 @@ class GameFormView(View):
 
     def post(self, request):
         game_form = GameForm(request.POST, request.FILES)
-        print(request.POST)
         if game_form.is_valid():
             GAME.objects.create(**game_form.cleaned_data)
             return HttpResponseRedirect('/')
@@ -106,3 +104,33 @@ class GameDetailView(generic.DetailView):
         game_view = get_object_or_404(GAME, pk=kwargs['pk'])
         context = {'game_view': game_view}
         return render(request, 'game_view.html', context)
+
+
+####### TEAM
+
+
+class TeamFormView(View):
+    def get(self, request):
+        team_form = TeamForm()
+        return render(request, 'team.html', context={'team_form': team_form})
+
+    def post(self, request):
+        team_form = TeamForm(request.POST, request.FILES)
+        if team_form.is_valid():
+            TEAM.objects.create(**team_form.cleaned_data)
+            return HttpResponseRedirect('/')
+        return render(request, 'team.html', context={'team_form': team_form})
+
+
+class TeamListView(generic.ListView):
+    model = TEAM
+    template_name = 'team_list.html'
+    context_object_name = 'team_list'
+    queryset = TEAM.objects.all()[:100]
+
+
+class TeamDetailView(generic.DetailView):
+    def get(self, request, *args, **kwargs):
+        team_view = get_object_or_404(TEAM, pk=kwargs['pk'])
+        context = {'team_view': team_view}
+        return render(request, 'team_view.html', context)

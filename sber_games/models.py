@@ -24,6 +24,7 @@ class GAME(models.Model):
 # db TEAMS
 class TEAM(models.Model):
     name = models.CharField(max_length=255)
+    capitan = models.CharField(max_length=255, default=None)
     logo = models.ImageField(default=None, upload_to='sber_games/images/team/')
     game = models.ForeignKey('GAME', default=None, null=True, on_delete=models.CASCADE)
     members = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
@@ -55,19 +56,19 @@ class TOURNAMENT(models.Model):
         db_table = 'TOURNAMENTS'
 
 
-class PARTICIPANTS_UTournament(models.Model):
-    user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
-    tournament = models.ForeignKey('TOURNAMENT', default=None, null=True, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'ParticipantsUserToTournament'
-
-
-class PARTICIPANTS_UTeam(models.Model):
-    user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
-    teams = models.ForeignKey('TEAM', default=None, null=True, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'ParticipantsUserToTeam'
+# class PARTICIPANTS_UTournament(models.Model):
+#     user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
+#     tournament = models.ForeignKey('TOURNAMENT', default=None, null=True, on_delete=models.CASCADE)
+#
+#     class Meta:
+#         db_table = 'ParticipantsUserToTournament'
+#
+#
+# class PARTICIPANTS_UTeam(models.Model):
+#     user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
+#     teams = models.ForeignKey('TEAM', default=None, null=True, on_delete=models.CASCADE)
+#
+#     class Meta:
+#         db_table = 'ParticipantsUserToTeam'
 
 # TODO db MAIL

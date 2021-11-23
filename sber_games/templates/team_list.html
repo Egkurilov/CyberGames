@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%  if team_list %}
+        <ul>
+{% for team in team_list %}
+        <li>
+         {{ team.id }} {{ team.name }}
+            <a href="/team/{{ team.id }}/">{{ team.name }}</a>
+        </li>
+{% endfor %}
+        </ul>
+{% else %}
+    <p>komand net</p>
+{% endif %}
+</body>
+</html>
