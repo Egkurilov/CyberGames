@@ -5,7 +5,10 @@ from sber_games.views import TournamentFormView, TournamentListView, TournamentD
     GameDetailView, TeamDetailView, TeamFormView, TeamListView
 
 urlpatterns = [
+    #MAIN
     path('', views.HomePageView.as_view()),
+
+    #TEST
     path('user_info', views.user_info, name='user_info'),
 
     #TEAM
@@ -23,7 +26,9 @@ urlpatterns = [
     path('game_list/', GameListView.as_view()),
     path('game/<int:pk>/', GameDetailView.as_view(), name='game-detail'),
 
-    #path('game', views.my_game, name='my_game'),
+    #USER
     path('user_list', views.UserListView.as_view(), name='user_list'),
     path('user_list/<int:pk>', views.UserDetailView.as_view(), name='user_Detail')
+
+    #MATCH
 ]

@@ -26,7 +26,7 @@ class UserListView(generic.ListView):
     model = USER
     template_name = 'user_list.html'
     context_object_name = 'user_list'
-    queryset = USER.objects.all()[:5]
+    queryset = USER.objects.all()[:50]
 
 
 class UserDetailView(generic.DetailView):

@@ -21,6 +21,20 @@ class GAME(models.Model):
         db_table = 'GAMES'
 
 
+class MATCH(models.Model):
+    # team1
+    team1_name = models.CharField(max_length=255)
+    team1_logo = models.CharField(max_length=255)
+    # team2
+    team2_name = models.CharField(max_length=255)
+    team2_logo = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name[:50]
+
+    class Meta:
+        db_table = 'MATCH'
+
 # db TEAMS
 class TEAM(models.Model):
     name = models.CharField(max_length=255)
@@ -56,19 +70,19 @@ class TOURNAMENT(models.Model):
         db_table = 'TOURNAMENTS'
 
 
-# class PARTICIPANTS_UTournament(models.Model):
-#     user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
-#     tournament = models.ForeignKey('TOURNAMENT', default=None, null=True, on_delete=models.CASCADE)
-#
-#     class Meta:
-#         db_table = 'ParticipantsUserToTournament'
-#
-#
-# class PARTICIPANTS_UTeam(models.Model):
-#     user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
-#     teams = models.ForeignKey('TEAM', default=None, null=True, on_delete=models.CASCADE)
-#
-#     class Meta:
-#         db_table = 'ParticipantsUserToTeam'
+class TEAM_MEMBER(models.Model):
+    user = models.ForeignKey('app_profiles.USER', default=None, null=True, on_delete=models.CASCADE)
+    teams = models.ForeignKey('TEAM', default=None, null=True, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'TEAM_MEMBER'
+
+
+class TOURNEY_MEMBER(models.Model):
+    teams = models.ForeignKey('TEAM', default=None, null=True, on_delete=models.CASCADE)
+    tournament = models.ForeignKey('TOURNAMENT', default=None, null=True, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'TOURNEY_MEMBER'
 
 # TODO db MAIL
