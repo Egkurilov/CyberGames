@@ -1,0 +1,5 @@
+SELECT tournaments_id, team1, team2, T.name AS M_name FROM MATCH M
+left join TOURNAMENTS T on T.id = M.tournaments_id;
+
+SELECT * FROM USER
+WHERE teams_id = 1 OR teams_id = 2;

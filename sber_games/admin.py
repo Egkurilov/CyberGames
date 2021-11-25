@@ -7,7 +7,7 @@ from app_profiles.models import USER
 
 @admin.register(USER)
 class sber_gamesAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'nickname', 'first_name', 'second_name', 'last_name', 'email', 'status',)
 
 
 @admin.register(GAME)
@@ -22,7 +22,10 @@ class sber_gamesAdmin(admin.ModelAdmin):
 
 @admin.register(TEAM)
 class sber_gamesAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'name', 'members_id', 'game_id', 'capitan', 'tournaments_id', 'status',)
+    list_filter = ('game_id', 'tournaments_id', 'members_id', )
+
+
 
 
 # @admin.register(TOURNEY_MEMBER)

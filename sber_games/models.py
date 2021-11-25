@@ -23,7 +23,8 @@ class GAME(models.Model):
 
 class MATCH(models.Model):
     # team1
-    team_member = models.ForeignKey('TEAM', default=None, blank=True, null=True, on_delete=models.CASCADE)
+    team1 = models.CharField(max_length=255, default=1)
+    team2 = models.CharField(max_length=255, default=1)
     tournaments = models.ForeignKey('TOURNAMENT', default=None, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
