@@ -13,11 +13,18 @@
         <br>
     {{ match.team2 }} team2
         <br>
-    {{ match.tournaments_id }} tournaments_id
+    {{ match.tournaments_id }}
     <br>
-    {{ match.tournaments__name }} tournaments__name
+    {{ match.tournaments__name }}
     <br>
+
 {% endfor %}
+    {% for users in user%}
+    {{ users.id}} id
+    <br>
+    {{ users.nickname }} nickname
+     <br>
+    {% endfor %}
 {% else %}
     <p>Matchei net</p>
 {% endif %}

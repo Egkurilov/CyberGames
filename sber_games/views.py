@@ -141,8 +141,12 @@ class MatchView(View):
         queryset = MATCH.objects.filter() \
             .select_related('tournaments__match') \
             .values('team1', 'team2', 'tournaments__name', 'tournaments_id')
-        context = {'matches': queryset}
+        queryset_user = USER.objects.filter(teams_id=1)|USER.objects.filter(teams_id=2) \
+
+        context = {'matches': queryset, 'user': queryset_user}
         return render(request, 'match.html', context)
 
     #SELECT tournaments_id, team1, team2, T.name AS M_name FROM MATCH M
     #left join TOURNAMENTS T on T.id = M.tournaments_id;
+    #SELECT * FROM USER
+    #WHERE teams_id = 1 OR teams_id = 2;
