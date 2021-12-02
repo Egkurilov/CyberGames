@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%  if matches %}
+{% for match in matches%}
+    {{ match.id}} id
+    <br>
+    {{ match.team1 }} team1
+        <br>
+    {{ match.team2 }} team2
+        <br>
+    {{ match.tournaments_id }} tournaments_id
+    <br>
+    {{ match.tournaments__name }} tournaments__name
+    <br>
+{% endfor %}
+{% else %}
+    <p>Matchei net</p>
+{% endif %}
+</body>
+</html>

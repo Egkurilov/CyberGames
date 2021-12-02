@@ -12,11 +12,11 @@ class sber_gamesAdmin(admin.ModelAdmin):
 
 @admin.register(GAME)
 class sber_gamesAdmin(admin.ModelAdmin):
-    pass
-
+    list_display = ('id', 'name', 'logo',)
 
 @admin.register(TOURNAMENT)
 class sber_gamesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'start_date', 'prize', 'status',)
     list_filter = ('game_id', 'team_member_id', 'user_member_id', )
 
 

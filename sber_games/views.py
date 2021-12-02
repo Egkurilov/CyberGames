@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 
 from app_profiles.models import USER
 from sber_games.forms import TournamentForm, GameForm, TeamForm
-from sber_games.models import TOURNAMENT, GAME, TEAM
+from sber_games.models import TOURNAMENT, GAME, TEAM, MATCH
 
 
 class HomePageView(TemplateView):
@@ -134,3 +134,15 @@ class TeamDetailView(generic.DetailView):
         team_view = get_object_or_404(TEAM, pk=kwargs['pk'])
         context = {'team_view': team_view}
         return render(request, 'team_view.html', context)
+
+
+class MatchView(View):
+    def get(self, request):
+        queryset = MATCH.objects.filter() \
+            .select_related('tournaments__match') \
+            .values('team1', 'team2', 'tournaments__name', 'tournaments_id')
+        context = {'matches': queryset}
+        return render(request, 'match.html', context)
+
+    #SELECT tournaments_id, team1, team2, T.name AS M_name FROM MATCH M
+    #left join TOURNAMENTS T on T.id = M.tournaments_id;

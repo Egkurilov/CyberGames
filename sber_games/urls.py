@@ -2,7 +2,7 @@ from django.urls import path
 
 from sber_games import views
 from sber_games.views import TournamentFormView, TournamentListView, TournamentDetailView, GameFormView, GameListView, \
-    GameDetailView, TeamDetailView, TeamFormView, TeamListView
+    GameDetailView, TeamDetailView, TeamFormView, TeamListView, MatchView
 
 urlpatterns = [
     #MAIN
@@ -28,7 +28,8 @@ urlpatterns = [
 
     #USER
     path('user_list', views.UserListView.as_view(), name='user_list'),
-    path('user_list/<int:pk>', views.UserDetailView.as_view(), name='user_Detail')
+    path('user_list/<int:pk>', views.UserDetailView.as_view(), name='user_Detail'),
 
     #MATCH
+    path('match/', MatchView.as_view())
 ]
